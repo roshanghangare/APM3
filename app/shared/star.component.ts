@@ -1,15 +1,15 @@
-
-import{Component,Input} from '@angular/core';
+import{Component,Input,OnChanges,EventEmitter,Output} from '@angular/core';
 @Component({
   selector:'pm-star',
   moduleId:module.id,
   templateUrl:'star.component.html',
   styleUrls:['star.component.css'],
   })
-export class StarComponent{
-    rating:number=4;
-    starWidth:number=86;
-    calculateWidth():void{
-        this.starWidth=(this.starWidth/5)*this.rating;
+export class StarComponent implements OnChanges{
+    @Input() rating:number;
+    starWidth:number;
+    @Output() notify:EventEmitter<string>=new EventEmitter<string>();
+    ngOnChanges():void{
+        this.starWidth=(86/5)*this.rating;
     }
-}
+};
