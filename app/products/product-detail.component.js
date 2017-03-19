@@ -10,34 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var StarComponent = (function () {
-    function StarComponent() {
-        this.notify = new core_1.EventEmitter();
+var router_1 = require("@angular/router");
+var ProductDetailComponent = (function () {
+    function ProductDetailComponent(_route, _router) {
+        this._route = _route;
+        this._router = _router;
+        this.pageTitle = 'Product Details';
     }
-    StarComponent.prototype.ngOnChanges = function () {
-        this.starWidth = (86 / 5) * this.rating;
+    ProductDetailComponent.prototype.ngOnInit = function () {
+        var id = +this._route.snapshot.params['id'];
+        this.pageTitle += ": " + id;
     };
-    StarComponent.prototype.IamClicked = function () {
-        this.notify.emit('Bhau I am clicked ur rating is :' + this.rating);
+    ProductDetailComponent.prototype.BackClicked = function () {
+        this._router.navigate(['/products']);
     };
-    return StarComponent;
+    return ProductDetailComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], StarComponent.prototype, "rating", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], StarComponent.prototype, "notify", void 0);
-StarComponent = __decorate([
+ProductDetailComponent = __decorate([
     core_1.Component({
-        selector: 'pm-star',
+        selector: 'pm-productDetail',
+        templateUrl: 'product-details.component.html',
         moduleId: module.id,
-        templateUrl: 'star.component.html',
-        styleUrls: ['star.component.css'],
-    })
-], StarComponent);
-exports.StarComponent = StarComponent;
-;
-//# sourceMappingURL=star.component.js.map
+    }),
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router])
+], ProductDetailComponent);
+exports.ProductDetailComponent = ProductDetailComponent;
+//# sourceMappingURL=product-detail.component.js.map

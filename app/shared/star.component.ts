@@ -12,4 +12,8 @@ export class StarComponent implements OnChanges{
     ngOnChanges():void{
         this.starWidth=(86/5)*this.rating;
     }
+    IamClicked():void{
+        this.notify.emit('Bhau I am clicked ur rating is :'+this.rating);
+        
+    }
 };
