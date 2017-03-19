@@ -17,6 +17,7 @@ var http_1 = require("@angular/http");
 var star_component_1 = require("./shared/star.component");
 var router_1 = require("@angular/router");
 var welcome_component_1 = require("./home/welcome.component");
+var product_guard_service_1 = require("./products/product-guard.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,14 +27,17 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule,
             router_1.RouterModule.forRoot([{ path: 'products', component: product_list_component_1.ProductListComponent },
-                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent },
+                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent, canActivate: [product_guard_service_1.ProductGuardService] },
                 { path: 'welcome', component: welcome_component_1.WelcomeComponent },
                 { path: 'StarComponent', component: star_component_1.StarComponent },
                 { path: '', component: welcome_component_1.WelcomeComponent },
                 { path: '**', component: welcome_component_1.WelcomeComponent }
             ])
         ],
-        declarations: [app_component_1.AppComponent, product_list_component_1.ProductListComponent, product_filter_pipe_1.ProductFilterPipeClass, star_component_1.StarComponent, welcome_component_1.WelcomeComponent, product_detail_component_1.ProductDetailComponent],
+        declarations: [app_component_1.AppComponent, product_list_component_1.ProductListComponent,
+            product_filter_pipe_1.ProductFilterPipeClass, star_component_1.StarComponent, welcome_component_1.WelcomeComponent,
+            product_detail_component_1.ProductDetailComponent],
+        providers: [product_guard_service_1.ProductGuardService],
         bootstrap: [app_component_1.AppComponent],
     })
 ], AppModule);
